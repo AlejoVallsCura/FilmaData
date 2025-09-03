@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
     <title>Film Data</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
   </head>
   <body>
     <main>
@@ -30,26 +35,44 @@
         </nav>
         <div>
           <input type="text" placeholder="Buscar..." />
-          <button>Buscar</button>
+          <button><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       </header>
 
-      <!-- Sección Destacadas -->
-      <section>
-        <h2>Películas Destacadas</h2>
-        <article>
-          <h3>Black Adam</h3>
-          <p>Descripción breve...</p>
-        </article>
-        <article>
-          <h3>Megan</h3>
-          <p>Descripción breve...</p>
-        </article>
-        <article>
-          <h3>Otra Película</h3>
-          <p>Descripción breve...</p>
-        </article>
+      <section class="destacadas">
+      <h2>Películas destacadas</h2>
+        <div class="destacadas__list">
+
+          <article class="card">
+            <img src="/Recursos/peliculas/thunderbolts.webp" alt="Black Adam">
+            <div class="card__content">
+              <h3 class="card__title">Black Adam</h3>
+              <p class="card__meta">Acción · 2022</p>
+              <button>Ver más</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="/Recursos/peliculas/weapons.webp" alt="weapons">
+            <div class="card__content">
+              <h3 class="card__title">Weapons</h3>
+              <p class="card__meta">Terror · 2025</p>
+              <button>Ver más</button>
+            </div>
+          </article>
+
+          <article class="card">
+            <img src="/Recursos/peliculas/traselverano.webp" alt="Tras El Verano">
+            <div class="card__content">
+              <h3 class="card__title">Tras El Verano</h3>
+              <p class="card__meta">Drama · 2025</p>
+              <button>Ver más</button>
+            </div>
+          </article>
+
+        </div>
       </section>
+
 
       <!-- Las más vistas -->
       <section>
