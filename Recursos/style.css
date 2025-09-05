@@ -47,14 +47,14 @@
 
 /*SECCION PELICULAS DESTACADAS*/
 
-.destacadas {
-  background: #111;   /* fondo oscuro */
+.secciones {
+  background: #000;   /* fondo oscuro */
   color: white;
   padding: 20px;
 }
 
 /* Título */
-.destacadas h2 {
+.secciones h2 {
   font-size: 24px;
   margin-bottom: 15px;
 }
@@ -107,4 +107,20 @@
   color: white;
   cursor: pointer;
   border-radius: 4px;
+}
+
+
+
+.vistas__list{
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.cardhover {
+  transition: transform 0.3s ease; /* suaviza la animación */
+}
+
+.cardhover:hover {
+  transform: scale(1.05); /* se agranda un 5% */
 }
