@@ -125,3 +125,62 @@
 .cardhover:hover {
   transform: scale(1.05); /* se agranda un 5% */
 }
+
+
+
+/* películas por categoría  */
+
+
+.espacio{
+  display: flex;
+}
+.categorias{
+  width: 20%;
+}
+.peliculas{
+  width: 80%;
+  margin-top: 50px;
+}
+.peliculas h3{
+  font-size: 20px;
+}
+.peliculas p{
+  margin-top: 30px;
+  font-size: 16px;
+}
+.peliculas__categoria{
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  justify-content: space-evenly;
+}
+
+
+.lista__categorias{
+  list-style-type: none;
+  height: 300px;
+  margin-left: 40px;
+}
+.lista__categorias li{
+  width: 70%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s ease;
+
+}
+.lista__categorias li a{
+  text-decoration: none;
+  color: white;
+  display: block;
+  font-size: 18px;
+  box-sizing: border-box;
+  transition: 1s;
+  padding-left: 10px;
+}
+
+.listhover:hover{
+  background: linear-gradient(to right, #080631, #1906ad);
+  border-radius: 6px;
+
+}
