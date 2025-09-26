@@ -48,7 +48,7 @@
 /*SECCION PELICULAS DESTACADAS*/
 
 .secciones {
-  background: #000;   /* fondo oscuro */
+  background: #000;   
   color: white;
   padding: 20px;
 }
@@ -104,7 +104,7 @@
   margin-top: 8px;
   padding: 6px 10px;
   border: none;
-  background: #3498db;
+  background: #2F4B7C;
   color: white;
   cursor: pointer;
   border-radius: 4px;
@@ -135,10 +135,10 @@
   display: flex;
 }
 .categorias{
-  width: 20%;
+  width: 25%;
 }
 .peliculas{
-  width: 80%;
+  align-items: center;
   margin-top: 50px;
 }
 .peliculas h3{
@@ -152,9 +152,8 @@
   display: flex;
   flex-direction: row;
   margin-top: 30px;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
-
 
 .lista__categorias{
   list-style-type: none;
@@ -180,7 +179,272 @@
 }
 
 .listhover:hover{
-  background: linear-gradient(to right, #080631, #1906ad);
+  background: linear-gradient(to right, #080631, #2F4B7C);
   border-radius: 6px;
 
+}
+
+/*Footer*/
+
+
+footer{
+  background: #000000;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(47, 75, 124, 1) 100%);  
+  display: flex;          
+  justify-content: space-between; 
+  align-items: flex-start;
+}
+
+footer h3{
+  color: #2F4B7C;
+}
+
+footer section {
+  flex: 1; 
+  margin: 0 10px;
+  padding: 10%;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.redes ul {
+  display: flex;
+  gap: 15px;
+  list-style: none;      
+  padding: 0;
+  margin: 0;
+}
+
+.redes li a {
+  font-size: 24px;       
+  color: #979797;           
+  text-decoration: none; 
+}
+
+.redes li a:hover {
+  color: #2F4B7C;    
+  transition: 0.8s;
+}
+
+.legales ul {
+  display: flex;       /* Pone los enlaces en fila */
+  gap: 20px;           /* Espacio entre ellos */
+  list-style: none;    /* Quita viñetas */
+  padding: 0;
+  margin: 0;
+}
+
+.legales li a {
+  text-decoration: none;
+  color: #979797;       
+  font-weight: 500;
+}
+
+.legales li a:hover {
+  color: #2F4B7C;   
+  transition: 0.8s;
+}
+
+
+
+
+
+/* =====================================================================================================================================================================
+   Responsive
+   ===================================================================================================================================================================== */
+
+/* --- ≤ 1200px (laptops) --- */
+@media (max-width: 1200px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .nav-bar,
+  .nav-bar-list {
+    width: auto;
+    height: auto;
+    gap: 16px;
+  }
+
+  .nav-bar-list li a {
+    font-size: 14px;
+  }
+
+  .destacadas__list,
+  .vistas__list {
+    padding: 0 8px;
+  }
+
+  .card {
+    width: 220px;
+    height: 320px;
+  }
+}
+
+/* --- ≤ 992px (tablets apaisadas) --- */
+@media (max-width: 992px) {
+  /* Header en múltiples líneas si hace falta */
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    row-gap: 12px;
+  }
+
+  .header img {
+    width: 180px;
+    height: auto;
+  }
+
+  /* Buscador ocupa la fila completa abajo del menú */
+  .header > div {
+    order: 3;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .header input {
+    width: 70%;
+    max-width: 420px;
+  }
+
+  /* Listas de tarjetas hacen wrap */
+  .destacadas__list,
+  .vistas__list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  /* Tarjetas más flexibles */
+  .card {
+    width: 45%;
+    max-width: 280px;
+    min-width: 220px;
+    height: auto; /* deja que crezca por contenido */
+  }
+
+  .card img {
+    height: 60%;
+  }
+
+  /* Categorías y pelis por categoría */
+  .peliculas__categoria {
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .espacio {
+    gap: 16px;
+  }
+}
+
+/* --- ≤ 768px (tablets/phones grandes) --- */
+@media (max-width: 768px) {
+  .nav-bar {
+    width: 100%;
+  }
+
+  .nav-bar-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .secciones h2 {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  /* Apilar categorías y contenido */
+  .espacio {
+    flex-direction: column;
+  }
+
+  .categorias {
+    width: 100%;
+  }
+
+  .lista__categorias {
+    height: auto;
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .lista__categorias li {
+    width: calc(50% - 10px);
+  }
+
+  .peliculas {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  /* Tarjetas en 2 columnas */
+  .card {
+    width: 48%;
+    min-width: 200px;
+  }
+
+  /* Footer en columna y centrado */
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .redes ul {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .legales ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+/* --- ≤ 576px (móviles) --- */
+@media (max-width: 576px) {
+  .header img {
+    width: 140px;
+  }
+
+  .header input {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Tarjeta a 1 columna */
+  .card {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  /* Imagen con proporción estable en móvil */
+  .card img {
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .lista__categorias li {
+    width: 100%;
+  }
+
+  .secciones {
+    padding: 16px;
+  }
+
+  footer section {
+    padding: 16px;
+  }
 }
