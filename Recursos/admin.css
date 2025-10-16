@@ -1,0 +1,119 @@
+/* admin.css — mismo look & feel oscuro */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: oswald, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+main {
+  max-width: 760px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+h1, h2 { margin: 12px 0; }
+h2 { color: #bbb; font-size: 18px; }
+
+/* tarjeta/formulario */
+#movie-form {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+#movie-form label { 
+  display: block; 
+  font-size: 14px; 
+  margin-bottom: 4px; 
+  color: #ccc;
+}
+
+#movie-form input[type="text"],
+#movie-form input[type="number"],
+#movie-form input[type="url"],
+#movie-form input[type="file"],
+#movie-form textarea {
+  width: 100%;
+  background: #0b0b0b;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#movie-form input:focus,
+#movie-form textarea:focus {
+  outline: none;
+  border-color: #2F4B7C;
+  box-shadow: 0 0 0 2px rgba(47,75,124,.3);
+}
+
+#movie-form textarea { min-height: 120px; resize: vertical; }
+
+#movie-form fieldset {
+  border: 1px dashed #333;
+  border-radius: 6px;
+  padding: 12px;
+}
+#movie-form legend { color: #aaa; font-size: 12px; padding: 0 6px; }
+
+#movie-form button[type="submit"] {
+  background: #2F4B7C;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  justify-self: start;
+}
+#movie-form button[type="submit"]:hover { background: #263f69; }
+
+hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 20px 0;
+}
+
+/* lista admin */
+#admin-list {
+  display: grid;
+  gap: 10px;
+}
+
+#admin-list article {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#admin-list img {
+  width: 70px; height: 70px; object-fit: cover;
+  border-radius: 6px; border: 1px solid #333; background: #000;
+}
+
+#admin-list strong { color: #fff; }
+#admin-list em { color: #bbb; font-style: normal; }
+
+#admin-list a {
+  color: #2F4B7C; text-decoration: none; font-weight: 600;
+}
+#admin-list a:hover { text-decoration: underline; }
+
+/* responsive simple */
+@media (min-width: 700px) {
+  #movie-form { grid-template-columns: 1fr 1fr; }
+  #movie-form textarea,
+  #movie-form button[type="submit"],
+  #movie-form fieldset { grid-column: 1 / -1; }
+}

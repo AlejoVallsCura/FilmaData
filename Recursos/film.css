@@ -1,0 +1,106 @@
+/* film.css — consistente con tu tema oscuro */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: oswald, sans-serif;
+  background: #000; 
+  color: #fff;
+}
+
+main {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+/* link volver */
+.back-link,
+main > a[href] {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #2F4B7C;
+  text-decoration: none;
+  font-weight: 600;
+}
+.back-link:hover,
+main > a[href]:hover { text-decoration: underline; }
+
+/* contenedor del detalle */
+#movie, #film {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+/* header con poster + datos */
+.film-header {
+  display: grid;
+  gap: 16px;
+}
+
+.poster {
+  width: 240px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #000;
+}
+
+.film-title {
+  margin: 0 0 6px 0;
+  font-size: 28px;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.film-meta {
+  margin: 0;
+  color: #bbb;
+  font-size: 15px;
+}
+
+.film-slug {
+  margin: 6px 0 0 0;
+  color: #888;
+  font-size: 12px;
+}
+
+/* sección reseña */
+.film-section { margin-top: 18px; }
+.film-section h2 {
+  font-size: 20px;
+  margin: 0 0 8px 0;
+  color: #fff;
+}
+.film-section p {
+  margin: 0;
+  line-height: 1.7;
+  color: #ddd;
+}
+
+/* botón primario coherente con tus tarjetas */
+.btn {
+  display: inline-block;
+  background: #2F4B7C;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+.btn:hover { background: #263f69; }
+
+/* responsive */
+@media (min-width: 720px) {
+  .film-header {
+    grid-template-columns: 240px 1fr;
+    align-items: start;
+  }
+}
+@media (max-width: 576px) {
+  .poster { width: 100%; }
+}
