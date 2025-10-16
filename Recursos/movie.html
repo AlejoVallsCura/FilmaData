@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pelicula · Film Data</title>
+  <link rel="stylesheet" href="film.css"><!-- opcional -->
+  <link rel="stylesheet" href="style.css"><!-- tu css general si querés -->
+</head>
+<body>
+  <main style="max-width:960px;margin:24px auto;padding:0 12px;">
+    <a href="index.html" style="display:inline-block;margin-bottom:12px;color:#2F4B7C;text-decoration:none;font-weight:600;">← Volver al inicio</a>
+    <article id="movie"></article>
+  </main>
+
+  <script type="module">
+    import { getMovieBySlug } from './js/movies.js';
+
+    const params = new URLSearchParams(location.search);
+    const slug = params.get('slug');
+    const container = document.getElementById('movie');
+
+    const movie = slug ? getMovieBySlug(slug) : null;
+
+    if (!movie) {
+      container.innerHTML = `
+        <p>No se encontró la película.</p>
+        <p><a href="admin.html" style="color:#2F4B7C;">Cargar nueva</a></p>
+      `;
+    } else {
+      container.innerHTML = `
+        <header style="display:grid;gap:16px;align-items:start;">
+          <img src="${movie.image || '/Recursos/peliculas/placeholder.webp'}" alt="${movie.title}" style="width:240px;aspect-ratio:3/4;object-fit:cover;border-radius:8px;border:1px solid #333;background:#000;">
+          <div>
+            <h1 style="margin:0 0 6px 0;font-size:28px;">${movie.title}</h1>
+            <p style="margin:0;color:#bbb;">${movie.genre}${movie.year ? ' · ' + movie.year : ''}${movie.country ? ' · ' + movie.country : ''}</p>
+            <p style="margin:6px 0 0 0;color:#888;font-size:12px;">Slug: ${movie.slug}</p>
+          </div>
+        </header>
+        <section style="margin-top:16px;">
+          <h2 style="margin:0 0 8px 0;">Reseña</h2>
+          <p style="line-height:1.7;">${(movie.review || '').replace(/\n/g,'<br>')}</p>
+        </section>
+      `;
+
+      // layout responsivo simple
+      if (window.matchMedia('(min-width: 720px)').matches) {
+        const header = container.querySelector('header');
+        header.style.gridTemplateColumns = '240px 1fr';
+      }
+    }
+  </script>
+</body>
+</html>

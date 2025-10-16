@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin · Film Data</title>
+  <link rel="stylesheet" href="admin.css"><!-- opcional -->
+  <link rel="stylesheet" href="style.css"><!-- tu css general si querés -->
+</head>
+<body>
+  <main style="max-width:760px;margin:24px auto;padding:0 12px;">
+    <h1>Panel de administración</h1>
+
+    <form id="movie-form" action="../api/save_movie.php" method="POST" enctype="multipart/form-data">
+      <label>Título * <input type="text" name="title" required></label>
+      <label>Género * <input type="text" name="genre" required placeholder="Acción, Terror, Drama..."></label>
+      <label>Año <input type="number" name="year" min="1888" max="2100"></label>
+      <label>País <input type="text" name="country"></label>
+      <label>Reseña * <textarea name="review" rows="5" required></textarea></label>
+
+      <fieldset>
+        <legend>Imagen de portada (elegí 1 opción)</legend>
+        <p style="margin:.25rem 0;">Opción A: URL</p>
+        <input type="url" name="imageUrl" placeholder="https://...">
+        <p style="margin:.25rem 0;">— o —</p>
+        <p style="margin:.25rem 0;">Opción B: archivo (se guarda como DataURL en tu navegador)</p>
+        <input type="file" id="imageFile" accept="image/*">
+      </fieldset>
+
+      <button type="submit">Guardar película</button>
+    </form>
+
+    <hr>
+
+    <h2>Películas guardadas (local)</h2>
+    <div id="admin-list"></div>
+  </main>
+
+  <script type="module">
+    import { saveMovie, listMovies } from './js/movies.js';
+
+    const form = document.getElementById('movie-form');
+    const fileInput = document.getElementById('imageFile');
+    const listBox = document.getElementById('admin-list');
+
+    function renderList() {
+      const movies = listMovies();
+      if (!movies.length) {
+        listBox.innerHTML = '<p>No hay películas guardadas todavía.</p>';
+        return;
+      }
+      listBox.innerHTML = movies.map(m => `
+        <article style="display:flex;gap:12px;align-items:center;margin:.5rem 0;border:1px solid #ddd;border-radius:8px;padding:10px;background:#fff;">
+          <img src="${m.image || '/Recursos/peliculas/placeholder.webp'}" alt="${m.title}" style="width:70px;height:70px;object-fit:cover;border-radius:6px;border:1px solid #ddd;">
+          <div>
+            <strong>${m.title}</strong> · <em>${m.genre}</em> ${m.year ? '· ' + m.year : ''}
+            <div><a href="movie.html?slug=${encodeURIComponent(m.slug)}">Ver página</a></div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function fileToDataURL(file) {
+      return new Promise((res, rej) => {
+        const reader = new FileReader();
+        reader.onload = () => res(reader.result);
+        reader.onerror = rej;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const title = fd.get('title')?.toString().trim();
+      const genre = fd.get('genre')?.toString().trim();
+      const year = fd.get('year')?.toString().trim();
+      const country = fd.get('country')?.toString().trim();
+      const review = fd.get('review')?.toString().trim();
+      let image = fd.get('imageUrl')?.toString().trim() || '';
+
+      if (!title || !genre || !review) {
+        alert('Completá título, género y reseña.');
+        return;
+      }
+
+      if (fileInput.files && fileInput.files[0]) {
+        try { image = await fileToDataURL(fileInput.files[0]); } catch {}
+      }
+
+      const created = saveMovie({ title, genre, year, country, review, image });
+      // Ir directo a la página individual
+      location.href = `movie.html?slug=${encodeURIComponent(created.slug)}`;
+    });
+
+    renderList();
+  </script>
+</body>
+</html>
